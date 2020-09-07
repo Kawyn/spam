@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      :root {
+        --first: #1167b1;
+        --second: #187bcd;
+        --third: #2a9df4;
+      }
+
+      * {
+        overflow: hidden;
+        font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+          "Helvetica Neue", sans-serif;
+        background-color: white;
+        font-weight: 900;
+
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      #credits {
+        position: absolute;
+
+        bottom: 2%;
+
+        width: 300px;
+        margin: auto;
+        text-align: center;
+
+        font-style: italic;
+        font-size: 0.8em;
+
+        left: 50%;
+        transform: translate(-50%);
+      }
+
+      .text {
+        background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      #div {
+        position: absolute;
+
+        left: 50%;
+        top: 45%;
+
+        width: 650px;
+        height: 500px;
+
+        transform: translate(-50%, -50%);
+      }
+
+      .gradient {
+        background-color: #20bf55;
+        background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+        border-radius: 7px;
+        padding: 5px;
+      }
+
+      .gradient > div {
+        width: 100%;
+        height: 100%;
+        border-radius: 7px;
+      }
+
+      #button {
+        position: absolute;
+        width: 200px;
+        left: 50%;
+        top: 80%;
+        transform: translate(-50%, -50%);
+      }
+      #button:hover {
+        background-image: linear-gradient(315deg, #01baef 0%, #20bf55 74%);
+      }
+      #send {
+        height: 70px;
+        text-align: center;
+        width: 100%;
+      }
+      #send > span {
+        margin: 0px;
+        padding: 0px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        font-size: 2em;
+      }
+      #button:hover .text {
+        background-image: linear-gradient(315deg, #01baef 0%, #20bf55 74%);
+      }
+
+      h1 {
+        margin: 0px;
+        padding: 0px;
+        position: absolute;
+        left: 50%;
+        top: 12%;
+        transform: translate(-50%, -50%);
+
+        font-size: 5em;
+      }
+
+      input {
+        position: absolute;
+        border: 5px solid #01baef;
+        border-radius: 90px;
+        left: 50%;
+        width: 340px;
+        text-align: center;
+        height: 40px;
+        transform: translate(-50%);
+        transition: width 0.3s;
+        font-size: 1.2em;
+      }
+
+      input:focus {
+        width: 540px;
+        border-color: #20bf55;
+      }
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: none;
+      }
+
+      textarea {
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%);
+
+        border: 5px solid #01baef;
+        border-radius: 90px;
+        left: 50%;
+        text-align: center;
+        height: 30px;
+        transform: translate(-50%);
+        font-size: 1.2em;
+        resize: none;
+      }
+      #text {
+        width: 240px;
+        transition: height 0.2s, width 0.3s;
+        padding: 5px 50px;
+      }
+      #text:focus {
+        width: 440px;
+        height: 80px;
+        border-color: #20bf55;
+      }
+      #load {
+        position: absolute;
+        top: 0px;
+        left: 0;
+        background-image: linear-gradient(315deg, #01baef 0%, #20bf55 74%);
+        height: 5px;
+        width: 100%;
+      }
+      #load2 {
+        position: absolute;
+        top: 0px;
+        right: 0;
+        height: 10px;
+
+        z-index: 10;
+      }
+      iframe {
+        display: none;
+      }
+      #counter {
+        margin: 0px;
+        padding: 0px;
+        position: absolute;
+        top: 47.5%;
+        font-size: 10em;
+        left: 50%;
+        text-align: center;
+        transform: translate(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="load2" style="width: 100%"></div>
+
+    <div id="load"> </div>
+
+    <h1 class="text">[nazwa]</h1>
+    <div id="div" class="gradient">
+      <div>
+        <input
+          spellcheck="false"
+          type="email"
+          id="to"
+          placeholder="TO"
+          style="top: 4%"
+          class="text"
+        />
+        <input
+          spellcheck="false"
+          type="text"
+          id="subject"
+          placeholder="SUBJECT"
+          style="top: 16%"
+          class="text"
+        />
+        <textarea
+          spellcheck="false"
+          type="text"
+          id="text"
+          placeholder="TEXT"
+          style="top: 28%"
+          class="text"
+          maxlength="75"
+        ></textarea>
+
+        <p id="counter" class="text">0</p>
+      </div>
+    </div>
+    <div
+      id="button"
+      class="gradient"
+      style="cursor: pointer"
+      onclick="start();"
+    >
+      <div id="send"> <span class="text">SPAM</span> </div>
+    </div>
+    <p id="credits" class="text">[nazwa] by Kawyn 05.09.2020 - 07.09.2020</p>
+
+    <script>
+      const to = document.getElementById("to");
+
+      const subject = document.getElementById("subject");
+      const text = document.getElementById("text");
+
+      const counter = document.getElementById("counter");
+      const loading = document.getElementById("load2");
+
+      function start() {
+        const too = encodeURIComponent(to.value);
+
+        const s = subject.value;
+        const t = encodeURIComponent(text.value);
+
+        setInterval(() => {
+          if (counter.textContent > 10) {
+            return;
+          }
+          let ws = s + " #" + Math.floor(Math.random() * 1000000);
+          ws = encodeURIComponent(ws);
+          let uri =
+            "https://bot-102030.herokuapp.com/?user=meme&to=" +
+            too +
+            "&subject=" +
+            ws +
+            "&text=" +
+            t;
+
+          console.log(uri);
+
+          var tag = document.createElement("iframe");
+          tag.src = uri;
+          document.body.appendChild(tag);
+
+          counter.textContent = 1 + parseInt(counter.textContent);
+          loading.style.width = "100%";
+        }, 5000);
+        setInterval(() => {
+          if (counter.textContent > 10) {
+            return;
+          }
+          loading.style.width = parseFloat(loading.style.width) - 0.1 + "%";
+        }, 5);
+      }
+    </script>
+  </body>
+</html>
